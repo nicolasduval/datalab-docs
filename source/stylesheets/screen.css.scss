@@ -20,6 +20,11 @@ html {
 body {
   margin: 0; }
 
+a {
+  text-decoration: none;
+  /* color: #8dc0ff; */
+  }
+
 a:focus {
   outline: thin dotted; }
 
@@ -154,8 +159,7 @@ table {
 
 .highlight, .highlight .w {
   color: #f8f8f2;
-  background-color: #1E1F1B;
-  }
+  background-color: #1E1F1B; }
 
 .highlight .err {
   color: #151515;
@@ -233,8 +237,7 @@ table {
   color: #909090; }
 
 .highlight, .highlight .w {
-  background-color: #1E1F1B;
-  }
+  background-color: #1E1F1B; }
 
 @font-face {
   font-family: 'icomoon';
@@ -588,7 +591,7 @@ html, body {
   margin-left: 15px; }
 
 .content p, .content li, .content dt, .content dd {
-  line-height: 1.6;
+  /* line-height: 1.6; */
   margin-top: 0; }
 
 .content img {
@@ -656,25 +659,25 @@ button#encode:hover {
   float: right;
   clear: right;
   box-sizing: border-box;
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
-  }
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
 
 .content pre > p, .content blockquote > p {
-  margin: 0; }
+  margin: 0;
+  }
 
 .content pre a, .content blockquote a {
   color: #3086c8;
   text-decoration: none; }
 
 .content blockquote {
-  padding: 10px 28px 0px;
-  }
+  padding: 10px 28px 0px; }
 
 .content blockquote p {
   color: #FFF;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   /* font-weight: bold; */
-  font-size: 14px; }
+  font-size: 14px;
+  }
 
 .content blockquote blockquote {
   width: 100%;
