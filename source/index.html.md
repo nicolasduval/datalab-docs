@@ -1,14 +1,11 @@
 ---
-title: API Reference
+title: Datalab API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - JSON
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -18,151 +15,377 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Datalab API! 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# API Versions
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Specify the version of the API in the request header.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Accept : apllication/json.v1`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+  If not set the the current version of the API will be used.
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+# Companies
+##Get all Companies
+> Responce 200
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+  {   
+      "id":1,
+      "name":"company_name", 
+      "full_address" :null,
+      "zip_code":null,
+      "phone_number":null,
+      "created_at":"Sun, 07 Feb 2016 22:40:59 +0100",
+      "updated_at":"Sun, 07 Feb 2016 22:40:59 +0100"
+    },
+    {
+      "id":2,
+      "name":"company2",
+      "full_address":null,
+      "zip_code":null,
+      "phone_number":null,
+      "created_at":"Sun, 07 Feb 2016 22:40:59 +0100",
+      "updated_at":"Sun, 07 Feb 2016 22:40:59 +0100"
+    }
 ]
 ```
 
-This endpoint retrieves all kittens.
-
+This endpoint retrieves all companies.
 ### HTTP Request
+`GET localhost:3000/api/companies/`
 
-`GET http://example.com/api/kittens`
 
-### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+##Get one company
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+> Responce 200
 
-## Get a Specific Kitten
+```json
+{   
+    "id":1,
+    "name":"company_name", 
+    "full_address" :null,
+    "zip_code":null,
+    "phone_number":null,
+    "created_at":"Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at":"Sun, 07 Feb 2016 22:40:59 +0100"
+  }
+```
+This endpoint retrieves one company.
+### HTTP Request
+`GET localhost:3000/api/companies/:id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+id | The ID of the company to retrieve
 
-```ruby
-require 'kittn'
+##Create a company
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+> Resquest JSON 
+
+```json
+  { "company": { "name": "company_name" } }
+```
+> Responce 201
+
+```json
+{   
+    "id":1,
+    "name":"company_name", 
+    "full_address" :null,
+    "zip_code":null,
+    "phone_number":null,
+    "created_at":"Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at":"Sun, 07 Feb 2016 22:40:59 +0100"
+  }
+```
+This endpoint creates one company.
+### HTTP Request
+`POST localhost:3000/api/companies/`
+
+Attributes | Data type
+---------- | -------
+name | String ( required )
+full_address | String
+zip_code | String
+phone_number | String
+
+
+
+##Update one company
+> Responce 200
+
+```json
+{   
+    "id":1,
+    "name":"new_company_name", 
+    "full_address" :null,
+    "zip_code":null,
+    "phone_number":null,
+    "created_at":"Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at":"Sun, 07 Feb 2016 22:40:59 +0100"
+  }
+```
+This endpoint updateds one company.
+### HTTP Request
+`PUT localhost:3000/api/companies/:id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+id | The ID of the company to update
+
+##Delete one company
+> Responce no_content
+
+This endpoint deletes a company.
+### HTTP Request
+`DELETE localhost:3000/api/companies/:id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+id | The ID of the company to delete
+
+
+
+# Projects
+##Get all Projects
+> Responce 200
+
+```json
+[
+   {
+    "id": 1,
+    "name": "My project",
+    "frame_rate": "24",
+    "color_space": null,
+    "aspect_ratio": "2.39",
+    "resolution": null,
+    "production": null,
+    "supervisor": null,
+    "sound_studio": null,
+    "status": null,
+    "company_id": 1,
+    "created_at": "Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at": "Sun, 07 Feb 2016 22:40:59 +0100"
+  },
+  {
+    "id": 1,
+    "name": "project_name",
+    "frame_rate": "24",
+    "color_space": null,
+    "aspect_ratio": "1.85",
+    "resolution": null,
+    "production": null,
+    "supervisor": null,
+    "sound_studio": null,
+    "status": null,
+    "company_id": 1,
+    "created_at": "Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at": "Sun, 07 Feb 2016 22:40:59 +0100"
+  },
+]
 ```
 
-```python
-import kittn
+This endpoint retrieves all projects.
+### HTTP Request
+`GET localhost:3000/api/projects/?company_id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+company_id | The ID of company the projects belongs to.
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+
+##Get one project
+
+> Responce 200
+
+```json
+ {
+    "id": 1,
+    "name": "My project",
+    "frame_rate": "24",
+    "color_space": null,
+    "aspect_ratio": "2.39",
+    "resolution": null,
+    "production": null,
+    "supervisor": null,
+    "sound_studio": null,
+    "status": null,
+    "company_id": 1,
+    "created_at": "Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at": "Sun, 07 Feb 2016 22:40:59 +0100"
+  }
 ```
+This endpoint retrieves one project.
+### HTTP Request
+`GET localhost:3000/api/projects/:id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+id | The ID of the project to retrieve
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+##Create a project
+
+> Resquest JSON 
+
+```json
+  { "project": { "name": "project_name", "company_id" : 2 } }
 ```
+> Responce 201
 
-> The above command returns JSON structured like this:
+```json
+ {
+    "id": 1,
+    "name": "My project",
+    "frame_rate": "24",
+    "color_space": null,
+    "aspect_ratio": "2.39",
+    "resolution": null,
+    "production": null,
+    "supervisor": null,
+    "sound_studio": null,
+    "status": null,
+    "company_id": 2,
+    "created_at": "Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at": "Sun, 07 Feb 2016 22:40:59 +0100"
+  }
+```
+This endpoint creates one project.
+### HTTP Request
+`POST localhost:3000/api/projects/`
+
+Attributes | Data type
+---------- | -------
+name | String ( required )
+company_id  | Integer ( required )
+frame_rate  | String
+color_space  | String
+aspect_ratio  | String
+resolution  | String
+production  | String
+supervisor  | String
+sound_studio  | String
+status  | String
+
+
+
+##Update one project
+
+> Responce 200
+
+```json
+{   
+    "id":1,
+    "name":"new_company_name",
+
+
+    "created_at":"Sun, 07 Feb 2016 22:40:59 +0100",
+    "updated_at":"Sun, 07 Feb 2016 22:40:59 +0100"
+  }
+```
+This endpoint updateds one project.
+### HTTP Request
+`PUT localhost:3000/api/projects/:id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+id | The ID of the project to update
+
+##Delete one project
+
+> Responce no_content
+
+This endpoint deletes a project.
+### HTTP Request
+`DELETE localhost:3000/api/projects/:id`
+### URL Parameters
+Parameter | Description
+--------- | -----------
+id | The ID of the project to delete
+
+
+
+
+#Timecode
+##to timecode
+This endpoint converts a frames number to a timecode string.
+> Resquest JSON 
+
+```json
+  { "fps" : 25, "frames" : 84600 }
+```
+> Responce 200
+
+```json
+  {
+    "fps": 25,
+    "timecode": "00:56:24:00"
+  }
+```
+### HTTP Request
+`POST localhost:3000/api/timecode/to_timecode/`
+
+Attributes | Data type
+---------- | -------
+fps | Fixnum ( required )
+frames  | Fixnum ( required )
+
+
+##to frames
+This endpoint converts a timecode string to a frames.
+> Resquest JSON 
+
+```json
+  { "fps" : 25, "timecode" : "01:00:00:01" }
+```
+> Responce 200
+
+```json
+  {
+    "fps": 25,
+    "frames": 90001
+  }
+```
+### HTTP Request
+`POST localhost:3000/api/timecode/to_frames/`
+
+Attributes | Data type
+---------- | -------
+fps | Fixnum ( required )
+timecode  | String ( required )
+
+
+##add
+This endpoint adds timecodes.
+> Resquest JSON 
+
+```json
+  { 
+    "fps": 25, 
+    "timecodes" : 
+      ["02:00:00:01", "02:00:00:00", "02:00:00:00"]
+  }
+```
+> Responce 200
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "fps": 25,
+  "timecode": "06:00:00:01",
+  "frames": 540001
 }
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
 ### HTTP Request
+`POST localhost:3000/api/timecode/add/`
 
-`GET http://example.com/kittens/<ID>`
+Attributes | Data type
+---------- | -------
+fps | Fixnum ( required )
+timecode  | Array ( required )
 
-### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
