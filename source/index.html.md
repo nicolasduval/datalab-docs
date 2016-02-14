@@ -10,7 +10,6 @@ toc_footers:
 includes:
   - companies
   - projects
-  <!-- - deliveries -->
   - timecode
   - errors
 
